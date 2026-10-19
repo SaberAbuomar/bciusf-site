@@ -71,9 +71,67 @@ html{scroll-behavior:smooth}
 .cd-unit{font-family:'Cinzel',Georgia,serif;font-weight:600;font-size:12px;letter-spacing:.14em;color:#F0CF8A;text-transform:uppercase}
 .foot-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:20px}.foot-row>:last-child{justify-self:end}
 @media (max-width: 760px){.foot-row{grid-template-columns:1fr;justify-items:center}.foot-row>:last-child{justify-self:center}}
+.sponsor-plate{transition:transform .25s, filter .25s}.sponsor-plate:hover{transform:translateY(-4px)}.sponsor-plate:focus-visible{outline:3px solid #7A3F1C;outline-offset:6px;border-radius:6px}@media (max-width: 560px){.sponsor-divider{display:none}}
 .track-mobile{display:none}
 @media (max-width: 760px){.track-mobile{display:flex}.glass-details > :not(button){display:none}.glass-details{justify-content:flex-end}}
 @media (prefers-reduced-motion: reduce){.spin,.spinrev,.is-cracked,.sh,.reveal,.crack-in{animation:none}.sh{display:none}}
+/* scroll effects */
+html,body{overflow-x:clip}
+.sr{opacity:0;transform:translate3d(0,46px,0);transition:opacity .95s cubic-bezier(.2,.7,.2,1),transform 1.05s cubic-bezier(.2,.7,.2,1);transition-delay:var(--sr-d,0s);will-change:opacity,transform}
+.sr.sr-l{transform:translate3d(-60px,0,0)}.sr.sr-r{transform:translate3d(60px,0,0)}
+.sr.sr-z{transform:scale(.9) translate3d(0,30px,0)}
+.sr.sr-u{transform:scaleX(.2);transform-origin:center}
+.sr.sr-in{opacity:1;transform:none}
+.sponsor-plate.sr-in:hover{transform:translateY(-4px)}
+#sr-bar{position:fixed;left:0;top:0;height:4px;width:100%;z-index:9999;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#8A5F1E,#F0CF8A 50%,#C9963F);box-shadow:0 1px 6px rgba(201,150,63,.6);pointer-events:none}
+@media (prefers-reduced-motion: reduce){.sr{opacity:1!important;transform:none!important;transition:none!important}#sr-bar{display:none}}
+
+/* phone layout fixes */
+.track-plaque{white-space:nowrap}
+@media (max-width: 760px){
+  .track-scene{width:172%!important;max-width:none!important;flex-shrink:0}
+  .track-plaque{font-size:10px!important;letter-spacing:.05em!important}
+  .osc-rule{display:none}
+  .win-name{font-size:15px!important}
+  .win-hint{font-size:9px!important;letter-spacing:.06em!important}
+  .osc-text{font-size:12px!important;letter-spacing:.16em!important;white-space:nowrap}
+  .hero-badge{right:-4px!important;width:76px!important;height:76px!important}
+}
+@media (max-width: 560px){
+  #sponsors > img.spin, #sponsors > img.spinrev{display:none}
+}
+/* application form */
+.ap-card{position:relative;background:linear-gradient(180deg,rgba(255,250,238,.92),rgba(246,234,208,.92));border:1.5px solid #6E4A18;border-radius:10px;box-shadow:0 0 0 5px #F2E4C8,0 0 0 6.5px #C9963F,0 26px 50px -24px rgba(42,29,22,.55);padding:clamp(22px,4vw,44px)}
+.ap-card form{display:flex;flex-direction:column;gap:22px}
+.ap-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:22px}
+.ap-field{display:flex;flex-direction:column;gap:8px;min-width:0}
+.ap-field>label,.ap-fs legend{font-size:19px;font-weight:600;color:#2A1D16;line-height:1.3}
+.ap-fs{border:0;padding:0;margin:0}.ap-fs legend{padding:0;margin-bottom:10px}
+.ap-req{color:#A8452A}.ap-opt{font-weight:400;font-style:italic;color:#6E5238;font-size:16px}
+.ap-card input[type=text],.ap-card input[type=email],.ap-card select,.ap-card textarea{width:100%;box-sizing:border-box;font:inherit;font-size:18px;color:#2A1D16;background:#FFFCF4;border:1.5px solid #8A6A3E;border-radius:6px;padding:11px 14px;min-height:48px;transition:border-color .2s,box-shadow .2s}
+.ap-card textarea{resize:vertical;min-height:110px;line-height:1.45}
+.ap-card select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 14 9'%3E%3Cpath d='M1 1l6 6 6-6' fill='none' stroke='%234A2E1A' stroke-width='2'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:40px}
+.ap-card input:focus,.ap-card select:focus,.ap-card textarea:focus{outline:none;border-color:#7A3F1C;box-shadow:0 0 0 3px rgba(201,150,63,.45)}
+.ap-card ::placeholder{color:#A08868}
+.ap-card .ap-bad{border-color:#A8452A!important;box-shadow:0 0 0 3px rgba(168,69,42,.18)!important}
+.ap-prefix{display:flex;align-items:stretch}.ap-prefix span{display:flex;align-items:center;padding:0 10px 0 14px;background:#EADAB8;border:1.5px solid #8A6A3E;border-right:0;border-radius:6px 0 0 6px;font-size:16px;color:#5E412A;white-space:nowrap}
+.ap-prefix input{border-radius:0 6px 6px 0!important;min-width:0}
+.ap-check{display:flex;align-items:flex-start;gap:10px;font-size:18px;color:#2A1D16;cursor:pointer}
+.ap-check input{width:20px;height:20px;margin:3px 0 0;accent-color:#7A3F1C;flex-shrink:0}
+.ap-chips{display:flex;flex-wrap:wrap;gap:10px}
+.ap-chip{position:relative;cursor:pointer}
+.ap-chip input{position:absolute;opacity:0;width:1px;height:1px}
+.ap-chip span{display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:1.5px solid #8A6A3E;border-radius:999px;background:#FFFCF4;font-size:17px;color:#3B2716;transition:background .2s,color .2s,border-color .2s}
+.ap-chip input:checked+span{background:#2A1D16;color:#F3D58F;border-color:#C9963F}
+.ap-chip input:checked+span::before{content:"✓";margin-right:8px;font-size:14px}
+.ap-chip input:focus-visible+span{box-shadow:0 0 0 3px rgba(201,150,63,.6)}
+.ap-chips.ap-bad span{border-color:#A8452A}
+.ap-error{margin:0;min-height:0;color:#A8452A;font-size:18px;font-weight:600}
+.ap-error:empty{display:none}
+.ap-submit{display:inline-flex;align-items:center;gap:12px;min-height:56px;padding:0 30px;border-radius:999px;background:linear-gradient(180deg,#F0CF8A 0%,#C9963F 55%,#9C6B24 100%);color:#2A1D16;font-family:'Cinzel',Georgia,serif;font-weight:700;font-size:16px;letter-spacing:.06em;border:1.5px solid #6E4A18;box-shadow:inset 0 1px 0 rgba(255,245,220,.7),0 3px 0 #6E4A18;cursor:pointer}
+.ap-submit:hover{filter:brightness(1.06)}.ap-submit:disabled{opacity:.65;cursor:progress}
+.ap-done{display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:20px 0}
+.ap-done[hidden]{display:none}
 </style>
 </head>
 <body>
@@ -133,7 +191,7 @@ Engineering Building II · Tampa</div>
 <img src="assets/hero-poster.jpg" alt="BCI Build Sprint teaser artwork: the event lettering inside an Art Nouveau arch under hanging wisteria" style="width: 100%; height: 100%; object-fit: cover; display: block">
 </div>
 </div>
-<div style="position: absolute; z-index: 2; right: -20px; top: 40%; width: 96px; height: 96px; border-radius: 50%; box-shadow: 0 10px 24px -8px rgba(42,29,22,0.6); border: 3px solid #C9963F">
+<div class="hero-badge" style="position: absolute; z-index: 2; right: -20px; top: 40%; width: 96px; height: 96px; border-radius: 50%; box-shadow: 0 10px 24px -8px rgba(42,29,22,0.6); border: 3px solid #C9963F">
 <img src="assets/badge.png" alt="" style="width: 100%; height: 100%; display: block">
 </div>
 </div>
@@ -143,12 +201,12 @@ Engineering Building II · Tampa</div>
 <!-- OSCILLOSCOPE BAND -->
 <div aria-hidden="true" class="iron" style="position: relative; z-index: 1; border-top: 3px solid #C9963F; border-bottom: 3px solid #C9963F; box-shadow: inset 0 4px 0 #2A1D16, inset 0 7px 0 #8A6428, inset 0 -4px 0 #2A1D16, inset 0 -7px 0 #8A6428; padding: 22px clamp(16px, 4vw, 40px)">
 <div style="max-width: 1240px; margin: 0 auto; display: flex; align-items: center; gap: 20px">
-<img src="assets/rule-brass.png" alt="" style="width: 22%; min-width: 80px; height: auto; transform: scaleX(-1)">
+<img class="osc-rule" src="assets/rule-brass.png" alt="" style="width: 22%; min-width: 80px; height: auto; transform: scaleX(-1)">
 <div style="flex-grow: 1; display: flex; flex-direction: column; align-items: center; gap: 6px">
 <svg viewBox="0 0 600 50" preserveAspectRatio="none" style="display: block; width: 100%; height: 44px"><path d="M0 25 H70 L78 18 L86 32 L94 25 H150 L157 6 L164 44 L171 25 H230 L238 20 L248 30 L256 25 H300 L305 14 L310 38 L315 8 L321 42 L327 25 H400 L408 21 L416 29 L424 25 H470 L477 5 L484 45 L491 25 H550 L558 19 L566 31 L574 25 H600" fill="none" stroke="#F0CF8A" stroke-width="1.8" stroke-linejoin="round"></path><path d="M0 25 H600" stroke="#8A6428" stroke-width="0.6" stroke-dasharray="2 6"></path></svg>
-<p style="margin: 0; font-family: 'Cinzel', Georgia, serif; font-weight: 600; font-size: 15px; letter-spacing: 0.3em; color: #F0CF8A; text-align: center">Think it · Build it · Ship it</p>
+<p class="osc-text" style="margin: 0; font-family: 'Cinzel', Georgia, serif; font-weight: 600; font-size: 15px; letter-spacing: 0.3em; color: #F0CF8A; text-align: center">Think it · Build it · Ship it</p>
 </div>
-<img src="assets/rule-brass.png" alt="" style="width: 22%; min-width: 80px; height: auto">
+<img class="osc-rule" src="assets/rule-brass.png" alt="" style="width: 22%; min-width: 80px; height: auto">
 </div>
 </div>
 
@@ -240,15 +298,15 @@ Engineering Building II · Tampa</div>
 <p style="margin: 0; font-style: italic; font-size: 20px; color: #3B2716">Strike a window to crack it. Strike again to break through.</p>
 </div>
 <div style="display: flex; flex-direction: column; align-items: center; gap: 20px">
-<div style="position: relative; width: 100%; max-width: 1500px; aspect-ratio: 1600 / 780">
+<div class="track-scene" style="position: relative; width: 100%; max-width: 1500px; aspect-ratio: 1600 / 780">
 
 <!-- Track I window -->
 <div style="position: absolute; left: 25%; top: 17.949%; width: 20%; height: 54.701%; z-index: 1">
 <div style="position: absolute; inset: 0; border-radius: 50% 50% 0 0 / 37.5% 37.5% 0 0; overflow: hidden; background: #F6E8C8 url('assets/card-biotech.svg') center / 100% 100% no-repeat">
 <div class="cond" data-if="bioClosed">
 <div aria-hidden="true" style="height: 100%; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center; padding: 20% 10% 9%">
-<span style="font-family: 'Cinzel', Georgia, serif; font-weight: 700; font-size: clamp(11px, 1.9vw, 30px); color: #1E140E">Biotech</span>
-<span style="font-family: 'Cinzel', Georgia, serif; font-weight: 700; font-size: clamp(8px, 1.05vw, 15px); letter-spacing: 0.12em; color: #1E140E">Break to reveal</span>
+<span style="font-family: 'Cinzel', Georgia, serif; font-weight: 700; font-size: clamp(11px, 1.9vw, 30px); color: #1E140E" class="win-name">Biotech</span>
+<span style="font-family: 'Cinzel', Georgia, serif; font-weight: 700; font-size: clamp(8px, 1.05vw, 15px); letter-spacing: 0.12em; color: #1E140E" class="win-hint">Break to reveal</span>
 </div>
 </div>
 <div class="cond" data-if="bioOpen">
@@ -284,8 +342,8 @@ Engineering Building II · Tampa</div>
 <div style="position: absolute; inset: 0; border-radius: 50% 50% 0 0 / 37.5% 37.5% 0 0; overflow: hidden; background: #F6E8C8 url('assets/card-recreation.svg') center / 100% 100% no-repeat">
 <div class="cond" data-if="recClosed">
 <div aria-hidden="true" style="height: 100%; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center; padding: 20% 10% 9%">
-<span style="font-family: 'Cinzel', Georgia, serif; font-weight: 700; font-size: clamp(11px, 1.9vw, 30px); color: #1E140E">Recreation</span>
-<span style="font-family: 'Cinzel', Georgia, serif; font-weight: 700; font-size: clamp(8px, 1.05vw, 15px); letter-spacing: 0.12em; color: #1E140E">Break to reveal</span>
+<span style="font-family: 'Cinzel', Georgia, serif; font-weight: 700; font-size: clamp(11px, 1.9vw, 30px); color: #1E140E" class="win-name">Recreation</span>
+<span style="font-family: 'Cinzel', Georgia, serif; font-weight: 700; font-size: clamp(8px, 1.05vw, 15px); letter-spacing: 0.12em; color: #1E140E" class="win-hint">Break to reveal</span>
 </div>
 </div>
 <div class="cond" data-if="recOpen">
@@ -319,10 +377,10 @@ Engineering Building II · Tampa</div>
 <!-- Brick wall -->
 <img class="wall-fade" src="assets/wall.svg" alt="" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; z-index: 4; pointer-events: none">
 <div style="position: absolute; z-index: 5; left: 25.625%; width: 18.75%; top: 77.778%; height: 6.667%; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; line-height: 1.15">
-<span style="font-family: 'Cinzel', Georgia, serif; font-weight: 700; font-size: clamp(9px, 1.35vw, 19px); letter-spacing: 0.12em; color: #F0CF8A">I · Biotech</span>
+<span style="font-family: 'Cinzel', Georgia, serif; font-weight: 700; font-size: clamp(9px, 1.35vw, 19px); letter-spacing: 0.12em; color: #F0CF8A" class="track-plaque">I · Biotech</span>
 </div>
 <div style="position: absolute; z-index: 5; left: 55.625%; width: 18.75%; top: 77.778%; height: 6.667%; display: flex; flex-direction: column; align-items: center; justify-content: center; pointer-events: none; line-height: 1.15">
-<span style="font-family: 'Cinzel', Georgia, serif; font-weight: 700; font-size: clamp(9px, 1.35vw, 19px); letter-spacing: 0.12em; color: #F0CF8A">II · Recreation</span>
+<span style="font-family: 'Cinzel', Georgia, serif; font-weight: 700; font-size: clamp(9px, 1.35vw, 19px); letter-spacing: 0.12em; color: #F0CF8A" class="track-plaque">II · Recreation</span>
 </div>
 </div>
 
@@ -360,7 +418,11 @@ Engineering Building II · Tampa</div>
 <img src="assets/rule-ink.png" alt="" aria-hidden="true" style="width: 240px; max-width: 38%; height: auto; transform: scaleX(-1)">
 <img src="assets/rule-ink.png" alt="" aria-hidden="true" style="width: 240px; max-width: 38%; height: auto">
 </div>
-<p style="margin: 8px 0 0; font-style: italic; font-size: clamp(26px, 3vw, 36px); line-height: 1.2; color: #4A2E1A">Coming soon.</p>
+<p style="margin: 8px 0 0; font-style: italic; font-size: clamp(20px, 2.2vw, 26px); line-height: 1.3; color: #4A2E1A">Thank you to our sponsors</p>
+<div class="sponsor-row" style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 36px; width: 100%; max-width: 760px; margin-top: 14px">
+<a class="sponsor-plate" href="https://www.emotiv.com/" target="_blank" rel="noopener" style="position: relative; display: block; width: 340px; max-width: 100%; aspect-ratio: 340 / 190; background: url('assets/ticket-gilt.svg') center / 100% 100% no-repeat; text-decoration: none; filter: drop-shadow(0 8px 10px rgba(42,29,22,0.3))"><span style="position: absolute; left: 18%; right: 18%; top: 22%; bottom: 22%; display: flex; align-items: center; justify-content: center"><img src="assets/logo-emotiv.png" alt="Emotiv" style="width: 100%; height: auto; display: block"></span></a>
+<a class="sponsor-plate" href="https://www.gtec.at/" target="_blank" rel="noopener" style="position: relative; display: block; width: 340px; max-width: 100%; aspect-ratio: 340 / 190; background: url('assets/ticket-gilt.svg') center / 100% 100% no-repeat; text-decoration: none; filter: drop-shadow(0 8px 10px rgba(42,29,22,0.3))"><span style="position: absolute; left: 18%; right: 18%; top: 22%; bottom: 22%; display: flex; align-items: center; justify-content: center"><img src="assets/logo-gtec.png" alt="g.tec" style="width: 54%; height: auto; display: block"></span></a>
+</div>
 <a class="btn-brass" href="#" data-link="sponsor" style="margin-top: 10px; display: inline-flex; align-items: center; min-height: 52px; padding: 0 28px; border-radius: 999px; background: #2A1D16; color: #F3D58F; text-decoration: none; font-family: 'Cinzel', Georgia, serif; font-weight: 700; font-size: 15px; letter-spacing: 0.06em; border: 2px solid #C9963F">Become a sponsor</a>
 </div>
 </section>
@@ -413,7 +475,7 @@ Engineering Building II · Tampa</div>
 <script>
 /* ===== Links: paste your real URLs here. Empty ones show a "coming soon" note. ===== */
 var CONFIG = {
-  register: "https://luma.com/9bb4iqlh",      // Luma event page (Apply Now)
+  register: "apply.html",                      // Apply Now buttons open the application page
   sponsor: "mailto:usfbcic@gmail.com?subject=Sponsoring%20BCI%20Build%20Sprint",       // sponsor interest form (or a link to a form)
   instagram: "https://www.instagram.com/bciusf/",
   bullsconnect: "https://bullsconnect.usf.edu/bcic/home/",
@@ -460,6 +522,48 @@ var EVENT = {
       });
     }
   });
+
+  // ---- application form
+  (function () {
+    var f = document.getElementById("apply-form"); if (!f) return;
+    var F = function (k) { return f.elements[k]; };
+    var err = document.getElementById("ap-error"), btn = f.querySelector(".ap-submit");
+    var other = document.getElementById("ap-heard-other"), otherBox = document.getElementById("ap-other");
+    other.addEventListener("change", function () { otherBox.style.display = other.checked ? "block" : "none"; if (other.checked) otherBox.focus(); });
+    f.addEventListener("input", function (e) { e.target.classList && e.target.classList.remove("ap-bad"); if (e.target.name === "heard") f.querySelector(".ap-chips").classList.remove("ap-bad"); });
+    function bad(el, msg) { el.classList.add("ap-bad"); err.textContent = msg; el.focus && el.focus(); return false; }
+    function check() {
+      err.textContent = "";
+      var n = F("name"), em = F("email"), u = F("university");
+      if (!n.value.trim()) return bad(n, "Please enter your full name.");
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(em.value.trim())) return bad(em, "Please enter a valid email address.");
+      if (!u.value.trim()) return bad(u, "Please tell us which university you attend.");
+      if (!F("age18").checked) { err.textContent = "You must be 18 or older to attend. Please confirm the age box."; F("age18").focus(); return false; }
+      var heard = f.querySelectorAll('input[name="heard"]:checked');
+      if (!heard.length) { f.querySelector(".ap-chips").classList.add("ap-bad"); err.textContent = "Please choose how you heard about us."; f.querySelector('input[name="heard"]').focus(); return false; }
+      return true;
+    }
+    f.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (F("company").value) return;              // spam bot
+      if (!check()) return;
+      if (!CONFIG.applyEndpoint) { err.textContent = "Online applications aren’t connected yet. Please email " + CONFIG.email + " to apply."; return; }
+      var data = new URLSearchParams();
+      ["name","email","university","dietary","experience","github","why","heard_other"].forEach(function (k) { data.append(k, (F(k).value || "").trim()); });
+      data.append("age18", "Yes");
+      f.querySelectorAll('input[name="heard"]:checked').forEach(function (c) { data.append("heard", c.value); });
+      btn.disabled = true; var label = btn.firstChild.nodeValue; btn.firstChild.nodeValue = "Sending… ";
+      fetch(CONFIG.applyEndpoint, { method: "POST", mode: "no-cors", body: data })
+        .then(function () {
+          document.getElementById("ap-done-name").textContent = F("name").value.trim().split(/\s+/)[0];
+          document.getElementById("ap-done-email").textContent = F("email").value.trim();
+          f.hidden = true; f.style.display = "none";
+          var d = document.getElementById("ap-done"); d.hidden = false; d.focus();
+        })
+        .catch(function () { err.textContent = "Something went wrong sending your application. Please try again, or email " + CONFIG.email + "."; })
+        .then(function () { btn.disabled = false; btn.firstChild.nodeValue = label; });
+    });
+  })();
 
   // ---- stained-glass tracks: 0 intact, 1 cracked, 2 broken
   var names = { bio: "Biotech", rec: "Recreation" }, stage = { bio: 0, rec: 0 };
@@ -514,5 +618,94 @@ var EVENT = {
 })();
 
 </script>
+<script>
+(function(){
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bar = document.createElement('div'); bar.id = 'sr-bar'; bar.setAttribute('aria-hidden','true'); document.body.appendChild(bar);
+  var poster = document.querySelector('img[src*="hero-poster"]');
+  if (poster) { poster.style.transformOrigin = '50% 30%'; poster.style.willChange = 'transform'; }
+  var ticking = false;
+  function onScroll(){
+    if (ticking) return; ticking = true;
+    requestAnimationFrame(function(){
+      var y = window.scrollY || 0, h = document.documentElement.scrollHeight - innerHeight;
+      bar.style.transform = 'scaleX(' + (h > 0 ? Math.min(1, y / h) : 0) + ')';
+      if (poster && !reduce && y < innerHeight * 1.5) poster.style.transform = 'translate3d(0,' + Math.min(y * 0.08, poster.offsetHeight * 0.055).toFixed(1) + 'px,0) scale(1.12)';
+      ticking = false;
+    });
+  }
+  addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll); onScroll();
+  if (reduce || !('IntersectionObserver' in window)) return;
+
+  // old CSS-only scroll timeline: neutralise so it doesn't fight this
+  document.querySelectorAll('.rise').forEach(function(el){ el.style.animation = 'none'; });
+
+  var skip = '.glass-details, .cond, .cd-cell *, .sponsor-plate *, details *, .clk *, [aria-hidden="true"] *';
+  var picks = [
+    ['#top [style*="flex-direction: column; gap: 24px"] > *', ''],
+    ['#top [style*="justify-self: center; width: min(470px"]', 'sr-z'],
+    ['section:not(#top) h2, section:not(#top) h3, section:not(#top) p', ''],
+    ['section:not(#top) img[src*="rule-"]', 'sr-u'],
+    ['section:not(#top) img[src*="icon-"]', 'sr-z'],
+    ['.clk', 'sr-l'],
+    ['.cd-cell', 'sr-z'],
+    ['#tracks [style*="aspect-ratio: 1600 / 780"]', 'sr-z'],
+    ['.sponsor-plate', 'alt'],
+    ['#faq details', ''],
+    ['section:not(#top) a.btn-brass, #sponsors a[href^="mailto"]', '']
+  ];
+  var items = [], seen = new Set();
+  picks.forEach(function(p){
+    document.querySelectorAll(p[0]).forEach(function(el, i){
+      if (seen.has(el) || el.closest(skip) && !el.matches('.cd-cell,.sponsor-plate,details,.clk')) return;
+      if (el.closest('.glass-details, .cond')) return;
+      seen.add(el); items.push(el);
+      el.classList.add('sr');
+      if (p[1] === 'alt') el.classList.add(i % 2 ? 'sr-r' : 'sr-l');
+      else if (p[1]) el.classList.add(p[1]);
+    });
+  });
+  // drop children whose ancestor is also animated (avoid double motion)
+  items.forEach(function(el){ var a = el.parentElement && el.parentElement.closest('.sr'); if (a && a !== el) { el.classList.remove('sr','sr-l','sr-r','sr-z','sr-u'); } });
+
+  var io = new IntersectionObserver(function(entries){
+    // leaving the screen: reset so it animates again next time
+    entries.forEach(function(e){
+      if (e.isIntersecting) return;
+      var el = e.target;
+      if (e.boundingClientRect.top > 0) {
+        // went off the bottom (user scrolled up): reset so it animates on the way down again
+        el.classList.remove('sr-in'); el.style.removeProperty('--sr-d');
+      } else if (!el.classList.contains('sr-in')) {
+        // above the screen but never shown (e.g. page reloaded mid-way): show it instantly
+        el.style.transition = 'none'; el.classList.add('sr-in');
+        void el.offsetWidth; el.style.removeProperty('transition');
+      }
+    });
+    var batch = entries.filter(function(e){ return e.isIntersecting; }).map(function(e){ return e.target; });
+    batch.sort(function(a,b){ return a.compareDocumentPosition(b) & 2 ? 1 : -1; });
+    batch.forEach(function(el, k){
+      el.style.setProperty('--sr-d', Math.min(k * 0.09, 0.6) + 's');
+      el.classList.add('sr-in');
+    });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
+  document.querySelectorAll('.sr').forEach(function(el){ io.observe(el); });
+  // anything that ended up above the screen without being seen (fast jump, anchor link) shows instantly
+  var srAll = Array.prototype.slice.call(document.querySelectorAll('.sr')), chk = false;
+  function showAbove(){
+    if (chk) return; chk = true;
+    requestAnimationFrame(function(){
+      srAll.forEach(function(el){
+        if (!el.classList.contains('sr-in') && el.getBoundingClientRect().bottom < 0) {
+          el.style.transition = 'none'; el.classList.add('sr-in'); void el.offsetWidth; el.style.removeProperty('transition');
+        }
+      });
+      chk = false;
+    });
+  }
+  addEventListener('scroll', showAbove, { passive: true }); showAbove();
+})();
+</script>
+
 </body>
 </html>
